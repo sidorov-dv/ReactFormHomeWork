@@ -1,0 +1,54 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+  <div class="container">
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName">
+    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert">
+      <div *ngIf="firstName.errors?.['required']">
+        First name is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName">
+    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert">
+      <div *ngIf="lastName.errors?.['required']">
+        Last name is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <label for="age">Age: </label>
+    <input id="age" type="number" formControlName="age">
+    <div *ngIf="age.invalid && (age.dirty || age.touched)" class="alert">
+      <div *ngIf="age.errors?.['required']">
+        Age is required.
+      </div>
+      <div *ngIf="age.errors?.['max']">
+        Max age must be less than 100.
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div formArrayName="jobs" class="jobs-list">
+      <p>Click the button and enter your previous jobs</p>
+      <button (click)="addJob()" type="button">Add another job</button>
+
+      <div *ngFor="let item of jobs.controls; let i=index">
+        <label for="item-{{ i }}">Job {{i+1}}:</label>
+        <input id="item-{{ i }}" type="text" [formControlName]="i">
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!profileForm.valid" class="sub">Submit</button>
+
+</form>
+
+<div *ngIf="formValid && profileForm.valid" class="obj">
+  Form Value: {{ formValid | json }}
+</div>
