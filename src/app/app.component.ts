@@ -9,18 +9,26 @@ import { Validators } from '@angular/forms';
 })
 export class AppComponent {
 
-  formValid = {};
+  formValid: Object | undefined;
+  formSumArr: any[] = [];
 
   profileForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    age: new FormControl('', [Validators.required, Validators.max(99)]),
+    age: new FormControl('', [Validators.required, Validators.min(1), Validators.max(99)]),
     jobs: new FormArray([])
   });
 
   onSubmit() {
     console.log(this.profileForm.value);
     this.formValid = this.profileForm.value;
+    let sumArr = [];
+    for (let [key, value] of Object.entries(this.formValid!)) {
+      console.log(`${key} : ${value}`);
+      sumArr.push([key, value]);
+    }
+    console.log(sumArr);
+    this.formSumArr = sumArr;
   }
 
   get jobs() {

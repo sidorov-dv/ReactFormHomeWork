@@ -19,6 +19,9 @@ form {
         font-size: 1.2rem;
         font-family: Arial, Helvetica, sans-serif;
     }
+    .alert-border {
+        outline: 2px red solid;
+    }
     input:not([type='number']) {
         min-width: 200px;
     }
@@ -28,7 +31,7 @@ form {
     .alert {
         color: red;
         font-weight: bold;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     .jobs-list {
         display: flex;
@@ -40,7 +43,7 @@ form {
             font-family: Arial, Helvetica, sans-serif;
         }
         button {
-            width: 150px;
+            width: 140px;
             height: 40px;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 1rem;
@@ -58,7 +61,7 @@ form {
         }
     }
     .sub {
-        width: 150px;
+        width: 140px;
         height: 40px;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 1rem;
@@ -73,5 +76,6 @@ form {
 
 .obj {
     font-size: 1.2rem;
+    font-weight: 300;
 }
 

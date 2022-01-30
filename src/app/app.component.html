@@ -2,7 +2,8 @@
 
   <div class="container">
     <label for="first-name">First Name: </label>
-    <input id="first-name" type="text" formControlName="firstName">
+    <input id="first-name" type="text" formControlName="firstName"
+      [class.alert-border]="firstName.invalid && (firstName.dirty || firstName.touched)">
     <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert">
       <div *ngIf="firstName.errors?.['required']">
         First name is required.
@@ -12,7 +13,8 @@
 
   <div class="container">
     <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+    <input id="last-name" type="text" formControlName="lastName"
+      [class.alert-border]="lastName.invalid && (lastName.dirty || lastName.touched)">
     <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert">
       <div *ngIf="lastName.errors?.['required']">
         Last name is required.
@@ -22,13 +24,17 @@
 
   <div class="container">
     <label for="age">Age: </label>
-    <input id="age" type="number" formControlName="age">
+    <input id="age" type="number" formControlName="age"
+      [class.alert-border]="age.invalid && (age.dirty || age.touched)">
     <div *ngIf="age.invalid && (age.dirty || age.touched)" class="alert">
       <div *ngIf="age.errors?.['required']">
         Age is required.
       </div>
       <div *ngIf="age.errors?.['max']">
         Max age must be less than 100.
+      </div>
+      <div *ngIf="age.errors?.['min']">
+        Min age must be greater than 0.
       </div>
     </div>
   </div>
@@ -49,6 +55,9 @@
 
 </form>
 
-<div *ngIf="formValid && profileForm.valid" class="obj">
-  Form Value: {{ formValid | json }}
+<div *ngIf="profileForm.valid" class="obj">
+  <div *ngFor="let item of formSumArr">
+    <pre>key: {{ item.join('   value: ') }}</pre>
+  </div>
 </div>
+
